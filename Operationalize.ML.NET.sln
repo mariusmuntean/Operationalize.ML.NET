@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operationalize.ML.NET", "Operationalize.ML.NET\Operationalize.ML.NET.csproj", "{974C7ECE-A7D3-446D-881D-1CAAE651D201}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operationalize.ML.NET.Prep", "Operationalize.ML.NET.Prep\Operationalize.ML.NET.Prep.csproj", "{B9CA3155-21DF-45BB-921B-FB6C879B763B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operationalize.ML.NET.PrepOnnx", "Operationalize.ML.NET.PrepOnnx\Operationalize.ML.NET.PrepOnnx.csproj", "{B9CA3155-21DF-45BB-921B-FB6C879B763B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operationalize.ML.NET.Common", "Operationalize.ML.NET.Common\Operationalize.ML.NET.Common.csproj", "{D0EFB08D-44FF-479A-9F19-FB07AFFFEEDE}"
 EndProject
