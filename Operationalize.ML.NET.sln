@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operationalize.ML.NET", "Operationalize.ML.NET\Operationalize.ML.NET.csproj", "{974C7ECE-A7D3-446D-881D-1CAAE651D201}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operationalize.ML.NET.Prep", "Operationalize.ML.NET.Prep\Operationalize.ML.NET.Prep.csproj", "{B9CA3155-21DF-45BB-921B-FB6C879B763B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operationalize.ML.NET.Common", "Operationalize.ML.NET.Common\Operationalize.ML.NET.Common.csproj", "{D0EFB08D-44FF-479A-9F19-FB07AFFFEEDE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{974C7ECE-A7D3-446D-881D-1CAAE651D201}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{974C7ECE-A7D3-446D-881D-1CAAE651D201}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{974C7ECE-A7D3-446D-881D-1CAAE651D201}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9CA3155-21DF-45BB-921B-FB6C879B763B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9CA3155-21DF-45BB-921B-FB6C879B763B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9CA3155-21DF-45BB-921B-FB6C879B763B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9CA3155-21DF-45BB-921B-FB6C879B763B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0EFB08D-44FF-479A-9F19-FB07AFFFEEDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0EFB08D-44FF-479A-9F19-FB07AFFFEEDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0EFB08D-44FF-479A-9F19-FB07AFFFEEDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0EFB08D-44FF-479A-9F19-FB07AFFFEEDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

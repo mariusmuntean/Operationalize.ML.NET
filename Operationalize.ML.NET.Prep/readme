@@ -1,0 +1,6 @@
+Model source: https://tfhub.dev/google/lite-model/on_device_vision/classifier/landmarks_classifier_north_america_V1/1
+
+Convert tflite to ONNX - https://github.com/onnx/tensorflow-onnx
+Install Tensorflow: pip install tensorflow
+Install tf2onnx: pip install -U tf2onnx
+Convert to ONNX (and optimize): python -m tf2onnx.convert --opset 16 --tflite lite-model_on_device_vision_classifier_landmarks_classifier_north_america_V1_1.tflite --output lite-model_on_device_vision_classifier_landmarks_classifier_north_america_V1_1.onnx

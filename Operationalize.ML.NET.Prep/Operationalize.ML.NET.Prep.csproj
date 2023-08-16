@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.ML" Version="2.0.1" />
+      <PackageReference Include="Microsoft.ML.ImageAnalytics" Version="2.0.1" />
+      <PackageReference Include="Microsoft.ML.OnnxRuntime" Version="1.15.1" />
+      <PackageReference Include="Microsoft.ML.OnnxTransformer" Version="2.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="lite-model_on_device_vision_classifier_landmarks_classifier_north_america_V1_1.onnx">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="lite-model_on_device_vision_classifier_landmarks_classifier_north_america_V1_1.tflite">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Landmarks\Statue_of_Liberty_7.jpg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Operationalize.ML.NET.Common\Operationalize.ML.NET.Common.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Landmarks\" />
+    </ItemGroup>
+
+</Project>
