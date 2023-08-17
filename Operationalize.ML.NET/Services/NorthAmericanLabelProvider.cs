@@ -21,7 +21,7 @@ internal class NorthAmericanLabelProvider : INorthAmericanLabelProvider
                 .OrderBy(tuple => tuple.Index)
                 .Select(tuple => tuple.LandmarkName)
                 .ToArray();
-        });
+        }, LazyThreadSafetyMode.PublicationOnly);
 
         return _lazyLabels.Value;
     }

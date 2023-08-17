@@ -8,6 +8,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operationalize.ML.NET.Commo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operationalize.ML.NET.Test", "Operationalize.ML.NET.Test\Operationalize.ML.NET.Test.csproj", "{26899EB1-8364-4C33-A8F8-D5DE0403CBF8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{850DD799-2210-4E26-AED0-6D93601AE535}"
+	ProjectSection(SolutionItems) = preProject
+		pexels-thisisengineering-3861969.jpg = pexels-thisisengineering-3861969.jpg
+		README.MD = README.MD
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
