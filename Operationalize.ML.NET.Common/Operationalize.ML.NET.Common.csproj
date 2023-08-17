@@ -20,6 +20,9 @@
       <None Update="landmarks_classifier_north_america_V1_label_map.csv">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+      <None Update="landmark_classifier_onnx.zip">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

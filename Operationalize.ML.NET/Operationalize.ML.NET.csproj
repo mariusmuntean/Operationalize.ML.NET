@@ -8,7 +8,15 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.9"/>
+        <PackageReference Include="Microsoft.Extensions.ML" Version="2.0.1" />
+        <PackageReference Include="Microsoft.ML" Version="2.0.1" />
+        <PackageReference Include="Microsoft.ML.OnnxRuntime" Version="1.15.1" />
+        <PackageReference Include="Microsoft.ML.OnnxTransformer" Version="2.0.1" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Operationalize.ML.NET.Common\Operationalize.ML.NET.Common.csproj" />
     </ItemGroup>
 
 </Project>
