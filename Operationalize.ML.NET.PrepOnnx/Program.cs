@@ -2,23 +2,26 @@
 using Microsoft.ML;
 using Operationalize.ML.NET.Common;
 
-// Configure ml model
+// Configure ML model
 var mlCtx = new MLContext();
 
 var pipeline = mlCtx
     .Transforms
+    // Adjust the image to the required model input size
     .ResizeImages(
         inputColumnName: nameof(LandmarkInput.Image),
         imageWidth: LandmarkInput.ImageWidth,
         imageHeight: LandmarkInput.ImageHeight,
         outputColumnName: "resized"
     )
+    // Extract the pixels form the image as a 1D float array, but keep them in the same order as they appear in the image.
     .Append(mlCtx.Transforms.ExtractPixels(
         inputColumnName: "resized",
         interleavePixelColors: true,
         outputAsFloatArray: false,
         outputColumnName: LandmarkModelSettings.Input)
     )
+    // Perform the estimation
     .Append(mlCtx.Transforms.ApplyOnnxModel(
             modelFile: "./" + LandmarkModelSettings.OnnxModelName,
             inputColumnName: LandmarkModelSettings.Input,
@@ -37,14 +40,13 @@ var loadedModel = mlCtx2.Model.Load(LandmarkModelSettings.MlNetModelFileName, ou
 var predictionEngine = mlCtx2.Model.CreatePredictionEngine<LandmarkInput, LandmarkOutput>(loadedModel);
 
 // Predict 
-// Bitmap image = Image.FromFile("255023953.jpeg") as Bitmap;
 var sw = new Stopwatch();
 sw.Start();
 await using var imagesStream = File.Open("Landmarks/Statue_of_Liberty_7.jpg", FileMode.Open);
 var prediction = predictionEngine.Predict(new LandmarkInput(imagesStream));
 Console.WriteLine($"Prediction took: {sw.ElapsedMilliseconds}ms");
 
-// Output
+// Labels start from the second line and each contains the 0-based index, a comma and a name.
 var labels = await File.ReadAllLinesAsync(LandmarkModelSettings.LabelFileName)
     .ContinueWith(lineTask =>
     {
@@ -54,6 +56,8 @@ var labels = await File.ReadAllLinesAsync(LandmarkModelSettings.LabelFileName)
             .Select(line => line.Split(",").Last())
             .ToArray();
     });
+
+// Merge the prediction array with the labels. Produce tuples of landmark name and its probability.
 var predictions = prediction.Prediction
         .Select((val, index) => (index, probabiliy: val))
         .Where(pair => pair.probabiliy > 0.55f)
@@ -62,5 +66,7 @@ var predictions = prediction.Prediction
         .Select(group => (name: group.Key, probability: group.Select((p) => p.probabiliy).Max()))
         .OrderByDescending(pair => pair.probability)
     ;
+
+// Output
 var predictionsString = string.Join(Environment.NewLine, predictions.Select(pair => $"name: {pair.name}, probability: {pair.probability}"));
 Console.WriteLine(string.Join(Environment.NewLine, predictionsString));
