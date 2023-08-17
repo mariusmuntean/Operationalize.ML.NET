@@ -37,3 +37,8 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+// Just a hack to make this class accessible from the Test project
+public partial class Program
+{
+}
