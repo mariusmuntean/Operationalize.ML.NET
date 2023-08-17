@@ -9,39 +9,41 @@ var pipeline = mlCtx
     .Transforms
     .ResizeImages(
         inputColumnName: nameof(LandmarkInput.Image),
-        imageWidth: LandmarkInput.ImageWidth,
-        imageHeight: LandmarkInput.ImageHeight,
+        imageWidth: LandmarkImageSettings.ImageWidth,
+        imageHeight: LandmarkImageSettings.ImageHeight,
         outputColumnName: "resized"
     )
     .Append(mlCtx.Transforms.ExtractPixels(
         inputColumnName: "resized",
         interleavePixelColors: true,
         outputAsFloatArray: false,
-        outputColumnName: LandmarkModelSettings.Input)
+        outputColumnName: "uint8_image_input")
     )
-    .Append(mlCtx.Transforms.ApplyOnnxModel(
-            modelFile: "./" + LandmarkModelSettings.OnnxModelName,
-            inputColumnName: LandmarkModelSettings.Input,
-            outputColumnName: LandmarkModelSettings.Output
-        )
+    .Append(
+        mlCtx.Model.LoadTensorFlowModel("lite-model_on_device_vision_classifier_landmarks_classifier_north_america_V1_1.tflite")
+            .ScoreTensorFlowModel(
+                outputColumnName: "transpose_1",
+                inputColumnName: "uint8_image_input",
+                addBatchDimensionInput: true
+            )
     );
 
 // Save ml model
 var transformer = pipeline.Fit(mlCtx.Data.LoadFromEnumerable(new List<LandmarkInput>()));
 
-mlCtx.Model.Save(transformer, null, LandmarkModelSettings.MlNetModelFileName);
+mlCtx.Model.Save(transformer, null, "landmark_classifier_tf.zip");
 
 // Load ml model
 var mlCtx2 = new MLContext();
-var loadedModel = mlCtx2.Model.Load(LandmarkModelSettings.MlNetModelFileName, out var _);
+var loadedModel = mlCtx2.Model.Load("landmark_classifier_tf.zip", out var _);
 var predictionEngine = mlCtx2.Model.CreatePredictionEngine<LandmarkInput, LandmarkOutput>(loadedModel);
 
 // Predict 
 // Bitmap image = Image.FromFile("255023953.jpeg") as Bitmap;
 var sw = new Stopwatch();
 sw.Start();
-await using var imagesStream = File.Open("Landmarks/Statue_of_Liberty_7.jpg", FileMode.Open);
-var prediction = predictionEngine.Predict(new LandmarkInput(imagesStream));
+// var prediction = predictionEngine.Predict(new Input() { Image = image });
+var prediction = predictionEngine.Predict(new LandmarkInput(File.Open("Landmarks/Statue_of_Liberty_7.jpg", FileMode.Open)));
 Console.WriteLine($"Prediction took: {sw.ElapsedMilliseconds}ms");
 
 // Output
